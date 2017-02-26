@@ -45,7 +45,7 @@ def init_call(interview_id):
 
 
 @blueprint.route("/<interview_id>/actions/fetch_recordings", methods=["POST"])
-# @handle_exceptions
+@handle_exceptions
 def fetch_recordings(interview_id):
 
     recordings = Interview.fetch_recordings(interview_id=interview_id)
@@ -69,7 +69,7 @@ def list_recordings(interview_id):
 
 
 @blueprint.route("/<interview_id>/actions/analyze", methods=["POST"])
-# @handle_exceptions
+@handle_exceptions
 def analyze(interview_id):
 
     result = Interview.analyze(interview_id=interview_id)
@@ -81,7 +81,7 @@ def analyze(interview_id):
 
 
 @blueprint.route("/<interview_id>/stats", methods=["GET"])
-# @handle_exceptions
+@handle_exceptions
 def stats(interview_id):
 
     interview, results, analysis = Interview.get_stats(interview_id=interview_id)
@@ -89,7 +89,7 @@ def stats(interview_id):
 
 
 @blueprint.route("/<interview_id>/transcripts", methods=["GET"])
-# @handle_exceptions
+@handle_exceptions
 def transcripts(interview_id):
 
     results = Interview.get_transcripts(interview_id=interview_id)

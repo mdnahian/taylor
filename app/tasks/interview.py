@@ -14,6 +14,14 @@ base_url = "https://api.twilio.com"
 client = TwilioRestClient(account_sid, auth_token)
 
 
+def send_url_sms(interview_id):
+    client.messages.create(
+        to="+16073388347",
+        from_="+13232714335",
+        body="Your interview analysis is available at " + BASE_URL + "/interviews/" + interview_id + "/stats",
+    )
+
+
 def init_call(url, to, interview_id):
     call = client.calls.create(url=url, to=to, from_="+13232714335",
                                record=True, method="GET",
@@ -120,9 +128,15 @@ def execute(raw):
 
         raw_text_analytics = getTextAnalytics(new_response)
 
+        score = '0'
+        try:
+            score = raw_text_analytics['docSentiment']['score']
+        except:
+            pass
+
         result += '''
         "response_sentiment": {
-        "score": "'''+raw_text_analytics['docSentiment']['score']+'''",
+        "score": "'''+score+'''",
         "type": "'''+raw_text_analytics['docSentiment']['type']+'''"
         },
         "emotions": {
@@ -155,7 +169,7 @@ def execute(raw):
 
 
 def getTextAnalytics(text):
-    alchemy_language = AlchemyLanguageV1(api_key='bef063351ecbc10dfc4baea5077310fa18d439fd')
+    alchemy_language = AlchemyLanguageV1(api_key='2a244174a9a41c43e449cf387a107093e50bdd64')
     combined_operations = ['entity', 'keyword', 'concept', 'doc-emotion', 'doc-sentiment']
 
     return alchemy_language.combined(text=text, extract=combined_operations)

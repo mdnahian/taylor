@@ -61,6 +61,7 @@ class Interview(Base):
         try:
             interview = Interview.get(interview_id=interview_id)
             recordings_list = InterviewTask.fetch_recordings(interview.call_sid)
+            Interview.send_url_sms(interview_id)
             for recording_item in recordings_list:
                 Recording.create(recording_item)
             return Recording.list(interview.call_sid)
@@ -105,6 +106,10 @@ class Interview(Base):
             raw['sections'].append(entry)
             i += 1
         return interview, zip(questions, recordings), InterviewTask.execute(raw)
+
+    @staticmethod
+    def send_url_sms(interview_id):
+        InterviewTask.send_url_sms(interview_id)
 
     @staticmethod
     def get_transcripts(interview_id):
