@@ -12,3 +12,11 @@ class API:
     class STATUS:
         SUCCESS = True
         FAILED = False
+
+
+class INTERVIEW:
+    class STATUS:
+        INIT = 1
+
+
+BASE_URL = "http://5a86b22d.ngrok.io"

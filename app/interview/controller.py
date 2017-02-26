@@ -28,3 +28,15 @@ def get(interview_id):
         status=API.STATUS.SUCCESS,
         interview=interview
     ), API.HTTP.OK
+
+
+@blueprint.route("/<interview_id>/actions/<action>", methods=["POST"])
+# @handle_exceptions
+def action(interview_id, action):
+
+    interview = Interview.action(interview_id=interview_id, action=action)
+
+    return jsonify(
+        status=API.STATUS.SUCCESS,
+        interview=interview
+    ), API.HTTP.OK
