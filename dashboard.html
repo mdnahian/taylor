@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" href="style.css" rel="stylesheet">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        
+        <script>
+            $('.grid').masonry({
+                itemSelector: '.card',
+                columnWidth: '.card-sizer',
+                percentPosition: true
+            });
+        </script>
+    
+    </head>
+    <body>
+        <nav>
+            <div>Taylr</div>
+        </nav>
+        <div class="main">
+            <div class="text half">
+                    <div class="simple">Hi Emma, thanks for your 30 minute interview with Taylr on February, 24 2017 at 4:05 p.m. for technical questions in financial careers. We listened to your call and here's what we found:</div>
+            </div>
+            <div class="card half">
+                <div class="container">
+                    <div class="header">Overall Grade</div>
+                    <div class="result">B+</div>
+                </div>                    
+            </div>
+        </div>
+        <div class="main">
+            <div class="text full">
+                    <div class="simple">Results Overview:</div>
+            </div>
+        </div>
+        <div class="main dash">
+            <div class="card">
+                <div class="container">
+                    <div class="header">Tone</div>
+                    <div class="result">Excited</div>
+                    <div class="subtext">We found that you were enthusiastic throughout the interview. Keep up the good work!</div>
+                </div>                    
+            </div>
+            <div class="card">
+                <div class="container">
+                    <div class="header">Response Time</div>
+                    <div class="result">00:00:17</div>
+                    <div class="subtext">Keeping short response times tells the interviewer that you are prepared and interested.</div>
+                </div>                    
+            </div>
+            <div class="card">
+                <div class="container">
+                    <div class="header">Emotions</div>
+                    <div class="result">
+                        <canvas id="emotion"></canvas>
+                        <script>
+                            var ctx = $("#emotion"),
+                                graph_data = [10, 20, 30, 15, 25];
+                            
+                            var emotionRadarChart = new Chart(ctx, {
+                                type: 'radar',
+                                data: {
+                                    labels: [
+                                        "Joy", 
+                                        "Disgust", 
+                                        "Fear", 
+                                        "Anger", 
+                                        "Sadness"
+                                    ],
+                                    datasets: [
+                                        {
+                                            data: graph_data,
+                                            label: "",
+                                            backgroundColor: "",
+                                            borderColor: "#FF6349",
+                                            borderWidth: 4,
+                                            borderJoinStyle: "round",
+                                            pointBackgroundColor: "rgb(255, 104, 104)",
+                                            pointBorderColor: "#fff",
+                                            pointHoverBackgroundColor: "#fff",
+                                            pointHoverBorderColor: "rgba(179,181,198,1)"
+                                        }
+                                    ]
+                                },
+                                options: {
+                                        scale: {
+                                            reverse: false,
+                                            ticks: {
+                                                stepSize: (Math.ceil(Math.max.apply( Math, graph_data) / 25) * 25)/3,
+                                                beginAtZero: true,
+                                                min: 0,
+                                                max: Math.ceil(Math.max.apply( Math, graph_data) / 25) * 25,
+                                                display: false
+                                            }
+                                        },
+                                        legend: {
+                                            display: false,
+                                            position: 'bottom'
+                                        }
+                                }
+                            })
+                        </script>
+                    </div>
+                    <div class="subtext">
+                        Showing joy, fear, anger, disgust or sadness can give an interviewer a lot of different impressions. Try to show a good attitude and put a positive spin on difficult situations!
+                    </div>
+                </div>                    
+            </div>
+            <div class="card">
+                <div class="container">
+                    <div class="header">Filler Words</div>
+                    <div class="result">42</div>
+                    <div class="subtext">
+                        Showing joy, fear, anger, disgust or sadness can give an interviewer a lot of different impressions. Try to show a good attitude and put a positive spin on difficult situations!
+                    </div>
+                    <div class="result">
+                        <canvas id="fillerWords"></canvas>
+                        <script>
+                            var ctx = $("#fillerWords"),
+                                graph_data = [10, 20, 30, 15, 25];
+                            
+                            var emotionRadarChart = new Chart(ctx, {
+                                type: 'radar',
+                                data: {
+                                    labels: [
+                                        "Joy", 
+                                        "Disgust", 
+                                        "Fear", 
+                                        "Anger", 
+                                        "Sadness"
+                                    ],
+                                    datasets: [
+                                        {
+                                            data: graph_data,
+                                            label: "",
+                                            backgroundColor: "",
+                                            borderColor: "#FF6349",
+                                            borderWidth: 4,
+                                            borderJoinStyle: "round",
+                                            pointBackgroundColor: "rgb(255, 104, 104)",
+                                            pointBorderColor: "#fff",
+                                            pointHoverBackgroundColor: "#fff",
+                                            pointHoverBorderColor: "rgba(179,181,198,1)"
+                                        }
+                                    ]
+                                },
+                                options: {
+                                        scale: {
+                                            reverse: false,
+                                            ticks: {
+                                                stepSize: (Math.ceil(Math.max.apply( Math, graph_data) / 25) * 25)/3,
+                                                beginAtZero: true,
+                                                min: 0,
+                                                max: Math.ceil(Math.max.apply( Math, graph_data) / 25) * 25,
+                                                display: false
+                                            }
+                                        },
+                                        legend: {
+                                            display: false,
+                                            position: 'bottom'
+                                        }
+                                }
+                            })
+                        </script>
+                    </div>
+                    <div class="subtext">
+                        Showing joy, fear, anger, disgust or sadness can give an interviewer a lot of different impressions. Try to show a good attitude and put a positive spin on difficult situations!
+                    </div>
+                </div>                    
+            </div>
+            <div class="card">
+                <div class="container">
+                    <div class="header">Response Time</div>
+                    <div class="result">00:00:17</div>
+                    <div class="subtext">Keeping short response times tells the interviewer that you are prepared and interested.</div>
+                </div>                    
+            </div>
+        </div>
+    </body>
+</html>
