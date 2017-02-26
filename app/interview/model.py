@@ -22,6 +22,7 @@ class Interview(Base):
     updated_at = Column(DateTime, default=datetime.utcnow())
 
     status = Column(Integer, nullable=False, default=INTERVIEW.STATUS.PENDING)
+    name = Column(String)
     call_sid = Column(String)
 
     @staticmethod
@@ -60,8 +61,8 @@ class Interview(Base):
         try:
             interview = Interview.get(interview_id=interview_id)
             recordings_list = InterviewTask.fetch_recordings(interview.call_sid)
-            # for recording_item in recordings_list:
-            #     Recording.create(recording_item)
+            for recording_item in recordings_list:
+                Recording.create(recording_item)
             return Recording.list(interview.call_sid)
         except exc.IntegrityError as err:
             raise APIException("", "", err.message)
@@ -87,6 +88,23 @@ class Interview(Base):
             raw['sections'].append(entry)
             i += 1
         return InterviewTask.execute(raw)
+
+    @staticmethod
+    def get_stats(interview_id):
+        interview = Interview.get(interview_id=interview_id)
+        questions = Question.list(interview_id=interview_id)
+        recordings = Recording.list(interview.call_sid)
+        raw = {'sections': []}
+        i = 0
+        for question in questions:
+            entry = {}
+            question = questions[i]
+            recording = recordings[i]
+            entry['question'] = question.question
+            entry['response'] = recording.text
+            raw['sections'].append(entry)
+            i += 1
+        return interview, zip(questions, recordings), InterviewTask.execute(raw)
 
     @staticmethod
     def get_transcripts(interview_id):

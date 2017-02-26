@@ -1,4 +1,4 @@
-from flask import (Blueprint, jsonify, render_template, request)
+from flask import (Blueprint, jsonify, render_template, request, redirect, url_for)
 from .model import Interview
 from lib.constants import (API)
 from lib.utils import handle_exceptions
@@ -10,16 +10,12 @@ blueprint = Blueprint("interview", __name__, url_prefix="/interviews")
 @handle_exceptions
 def create():
 
-    # json_interview = {
-    #     # 'name': request.form['name'],
-    #     'phone': '+16073388347'  #request.form['phone'],
-    # }
-    interview = Interview.create({})
+    json_interview = {
+        'name': request.form['name']
+    }
+    interview = Interview.create(json_interview)
 
-    return jsonify(
-        status=API.STATUS.SUCCESS,
-        interview=interview
-    ), API.HTTP.OK
+    return redirect(url_for('interview.init_call', interview_id=interview.interview_id), code=307)
 
 
 @blueprint.route("", methods=["GET"])
@@ -45,11 +41,7 @@ def get(interview_id):
 def init_call(interview_id):
 
     interview = Interview.init_call(interview_id=interview_id)
-
-    return jsonify(
-        status=API.STATUS.SUCCESS,
-        interview=interview
-    ), API.HTTP.OK
+    return redirect(url_for('interview.stats', interview_id=interview.interview_id))
 
 
 @blueprint.route("/<interview_id>/actions/fetch_recordings", methods=["POST"])
@@ -89,11 +81,11 @@ def analyze(interview_id):
 
 
 @blueprint.route("/<interview_id>/stats", methods=["GET"])
-@handle_exceptions
+# @handle_exceptions
 def stats(interview_id):
 
-    interview = Interview.get(interview_id=interview_id)
-    return render_template('stats.html', interview=interview)
+    interview, results, analysis = Interview.get_stats(interview_id=interview_id)
+    return render_template('dashboard.html', interview=interview, results=results, analysis=analysis)
 
 
 @blueprint.route("/<interview_id>/transcripts", methods=["GET"])

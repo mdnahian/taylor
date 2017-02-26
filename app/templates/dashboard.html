@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" href="/static/style.css" rel="stylesheet">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    
+    </head>
+    <body>
+        <nav>
+            <div>Taylr</div>
+        </nav>
+        <div class="main">
+            <div class="text half section">
+                   <div class="section-header">Hi Emma,</div>
+                    <div class="simple">Thanks for your 30 minute interview with
+                        Taylr on {{ interview.created_at.strftime("%B %d, %Y at %H:%M %P") }} for technical questions in financial careers. We listened to your call and here's what we found:</div>
+            </div>
+            <div class="card half">
+                <div class="container">
+                    <div class="header">Overall Grade</div>
+                    <div class="result">B+</div>
+                </div>                    
+            </div>
+        </div>
+        <div class="main">
+            <div class="text">
+                    <div class="simple">Results Overview:</div>
+            </div>
+        </div>
+        <div class="main dash">
+            <div class="card">
+                <div class="container">
+                    <div class="header">Overall Tone</div>
+                    <div class="result">Excited</div>
+                    <div class="subtext">We found that you were enthusiastic throughout the interview. Keep up the good work!</div>
+                </div>                    
+            </div>
+            <div class="card">
+                <div class="container">
+                    <div class="header">Average Response Time</div>
+                    <div class="result">00:00:17</div>
+                    <div class="subtext">Keeping short response times tells the interviewer that you are prepared and interested.</div>
+                </div>                    
+            </div>
+            <div class="card">
+                <div class="container">
+                    <div class="header">Emotions</div>
+                    <div class="result">
+                        <canvas id="emotion"></canvas>
+                        <script>
+                            var ctx = $("#emotion"),
+                                graph_data = [10, 20, 30, 15, 25];
+                            
+                            var emotionRadarChart = new Chart(ctx, {
+                                type: 'radar',
+                                data: {
+                                    labels: [
+                                        "Joy", 
+                                        "Disgust", 
+                                        "Fear", 
+                                        "Anger", 
+                                        "Sadness"
+                                    ],
+                                    datasets: [
+                                        {
+                                            data: graph_data,
+                                            label: "",
+                                            backgroundColor: "",
+                                            borderColor: "#FF6349",
+                                            borderWidth: 4,
+                                            borderJoinStyle: "round",
+                                            pointBackgroundColor: "rgb(255, 104, 104)",
+                                            pointBorderColor: "#fff",
+                                            pointHoverBackgroundColor: "#fff",
+                                            pointHoverBorderColor: "rgba(179,181,198,1)"
+                                        }
+                                    ]
+                                },
+                                options: {
+                                        scale: {
+                                            reverse: false,
+                                            ticks: {
+                                                stepSize: (Math.ceil(Math.max.apply( Math, graph_data) / 25) * 25)/3,
+                                                beginAtZero: true,
+                                                min: 0,
+                                                max: Math.ceil(Math.max.apply( Math, graph_data) / 25) * 25,
+                                                display: false
+                                            }
+                                        },
+                                        legend: {
+                                            display: false,
+                                            position: 'bottom'
+                                        }
+                                }
+                            })
+                        </script>
+                    </div>
+                    <div class="subtext">
+                        Showing joy, fear, anger, disgust or sadness can give an interviewer a lot of different impressions. Try to show a good attitude and put a positive spin on difficult situations!
+                    </div>
+                </div>                    
+            </div>
+            <div class="card">
+                <div class="container">
+                    <div class="header">Filler Words</div>
+                    <div class="result">{{ analysis['stats']['num_filler_words'] }}</div>
+                    <div class="subtext">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum illum numquam qui sequi nulla deserunt eius saepe laboriosam aliquid atque.
+                    </div>
+                    <div class="result">
+                        <canvas id="fillerWords"></canvas>
+                        <script>
+                            var ctx = $("#fillerWords");
+                            
+                            var fillerBarChart = new Chart(ctx, {
+                                type: 'horizontalBar',
+                                data: {
+                                        labels: ["Like", "Um", "So", "Uh", "You know"],
+                                        datasets: [
+                                            {
+                                                label: "Filler words",
+                                                backgroundColor: [
+                                                    '#48565D',
+                                                    '#1A272E',
+                                                    '#93AAB5',
+                                                    '#D7DEE1',
+                                                    '#607D8B'
+                                                ],
+                                                borderWidth: 0,
+                                                data: [65, 59, 80, 81, 56, 55]
+                                            }
+                                        ]
+                                },
+                                options: {
+                                    gridLines: {
+                                        display: false
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            stacked: true
+                                        }],
+                                        yAxes: [{
+                                            stacked: true
+                                        }],
+                                        display: false
+                                    },
+                                    legend: {
+                                        display: false,
+                                        position: 'bottom'
+                                    }
+                                }
+                            });
+                            
+                            
+                        </script>
+                    </div>
+                    <div class="subtext">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, ab?
+                    </div>
+                </div>                    
+            </div>
+
+            <a href="/interviews/{{ interview.interview_id }}/transcripts">
+               <div class="card">
+                    <div class="container">
+                        <div class="header">Transcript</div>
+                        <div class="transcript-result">
+                            <table>
+                                {% for result in results[:2] %}
+                                <tr class="taylr">
+                                    <td>T:</td>
+                                    <td>{{ result[0].question | truncate(100) }}</td>
+                                </tr>
+                                <tr class="interviewee">
+                                    <td>E:</td>
+                                    <td>{{ result[1].text | truncate(100) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            <div class="expand">
+                                <div>&hellip;</div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </a>
+            <div class="card">
+                <div class="container">
+                    <div class="header">Grammar</div>
+                    <div class="result meter">
+                        <meter max=100 min=0 value=50></meter>
+                    </div>
+                    <div class="subtext">
+                        Showing joy, fear, anger, disgust or sadness can give an interviewer a lot of different impressions. Try to show a good attitude and put a positive spin on difficult situations!
+                    </div>
+                </div>                    
+            </div>
+        </div>
+    </body>
+</html>

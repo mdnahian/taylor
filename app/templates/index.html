@@ -5,44 +5,49 @@
     </head>
     <body>
         <nav>
-            <div>Taylr</div>
+          <div class="hero">
+           <div class="logo half">
+                <img src="/static/img/taylr-logo-white.png">
+            </div>
+            <div class="half left">
+            <div class="hero-head">Meet Taylr.</div>
+            <div class="hero-subHead">Your personal assistant for interview prep, tailored just for you.</div>
+            
+            </div>
+            </div>
         </nav>
+    
         <div class="main">
-            <form id='info' action="/interviews" method="POST">
-                <input type="text" class="full" name="name" id="name"
-                placeholder="Name" value="John Doe"/>
+           
+           <div class="simple">
+            Taylr is designed to help prospective interviewees with specific insights to help improve on their interviewing skills and make them more marketable individuals.
+            
+            </div>
+            <form id='info' class="form" action="/interviews" method="POST">
+                <div class="section-header">Start your interview:</div>
+               
+                <input type="text" class="full" name="name" id="name" placeholder="Name"/>
                 <input type="text" class="half" name="email" id="email" placeholder="Email"/>
-                <input type="text" class="half" name="phone" id="phone"
-                placeholder="Phone" value="+1607338XXXX"/>
-                <div class="quarter filler"></div>
-                <select name="career" id="career" class="half">
-                    <option value="item1">Career</option>
-                    <option value="item2">This is a job 2</option>
-                    <option value="item3">This is a job 3</option>
-                    <option value="item4">This is a job 4</option>
-                    <option value="item5">This is a job 5</option>
-                </select>
-                <div class="quarter filler"></div>
-                <div class="quarter filler"></div>
+                <input type="text" class="half" name="phone" id="phone" placeholder="Phone"/>
+                
                 <select name="types" id="types" class="half">
                     <option value="item1">Question Type</option>
-                    <option value="item2">This is a job 2</option>
-                    <option value="item3">This is a job 3</option>
-                    <option value="item4">This is a job 4</option>
-                    <option value="item5">This is a job 5</option>
+                    <option value="item2">Behavioral</option>
                 </select>
-                <div class="quarter filler"></div>
-                <div class="quarter filler"></div>
-                <select name="duration" id="duration" class="half">
-                    <option value="item1">Duration</option>
-                    <option value="item2">This is a job 2</option>
-                    <option value="item3">This is a job 3</option>
-                    <option value="item4">This is a job 4</option>
-                    <option value="item5">This is a job 5</option>
-                </select>
-                <div class="quarter filler"></div>
                 
+                <select name="duration" id="duration" class="half">
+                    <option value="item1">Number of Questions</option>
+                    <option value="item2">3</option>
+                </select>
+                
+                
+                <div class="full button"><button type="submit"><div>Start</div></button></div>
             </form>
         </div>
+        
+        <footer>
+            <div class="foot-txt">&copy; 2017</div>
+            <div class="foot-txt">Made at HackBU by Md Islam, Akash Kothawale, Rohit Kapur and Emma Siegel</div>
+        </footer>
     </body>
 </html>
