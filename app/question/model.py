@@ -8,31 +8,38 @@ from sqlalchemy import exc
 from sqlalchemy.orm import exc as orm_exc
 from lib.exceptions import APIException
 from lib import (Base, session)
+# from lib.constants import BASE_URL, QUESTION
+# from app.tasks import question as QuestionTask
 
 
-class Twiml(Base):
-    __tablename__ = 'twimls'
+class Question(Base):
+    __tablename__ = 'questions'
 
-    twiml_id = Column(Integer, primary_key=True)
+    question_id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, default=datetime.utcnow())
     updated_at = Column(DateTime, default=datetime.utcnow())
 
-    xml = Column(String, nullable=False)
+    interview_id = Column(Integer, nullable=False)
+    question = Column(String, nullable=False)
 
     @staticmethod
-    def create(i_twiml):
+    def create(i_question):
         try:
-            twiml = Twiml(**i_twiml)
-            session.add(twiml)
+            question = Question(**i_question)
+            session.add(question)
             session.commit()
-            session.refresh(twiml)
-            return twiml
+            session.refresh(question)
+            return question
         except exc.IntegrityError as err:
             raise APIException("", "", err.message)
 
     @staticmethod
     def get(**kwargs):
         try:
-            return session.query(Twiml).filter_by(**kwargs).one()
+            return session.query(Question).filter_by(**kwargs).one()
         except orm_exc.NoResultFound:
             raise APIException("", "")
+
+    @staticmethod
+    def list(interview_id):
+        return session.query(Recording).filter(interview_id=interview_id)
