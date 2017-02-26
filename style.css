@@ -20,17 +20,48 @@ a {
 
 nav {
     width: 100%;
-    height: 88px;
+    padding: 30px;
     background-color: #ff6349;
     text-align: center;
-    font-family: sans-serif;
     color: white;
 }
 
-nav div {
-    position: relative;
-    top: 50%;
-    transform: perspective(1px) translateY(-50%);
+nav .hero {
+    display: flex;
+    width: 750px;
+    justify-content: space-between;
+    flex-wrap: wrap;  
+    margin: auto;
+    align-items: center;
+}
+
+nav .hero .left {
+    text-align: left;
+}
+
+nav .hero .logo img{
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+}
+
+nav .hero .hero-head{
+    font-weight: 900;
+    font-size: 48px;
+    color: #FFFFFF;
+}
+
+nav .hero .hero-subHead{
+    font-weight: 400;
+    font-size: 22px;
+    color: #FFFFFF;
+    padding: 25px 0;
+}
+
+nav .hero .hero-body{
+    font-weight: 300;
+    font-size: 14px;
+    color: #FFFFFF;
 }
 
 .main {
@@ -47,6 +78,7 @@ nav div {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 100px 0;
 }
 
 .main:first-of-type {
@@ -63,8 +95,37 @@ nav div {
 }
 
 .main input, .main select {   
-    height: 45px;
+    height: 62px;
     margin: 10px 0;
+    border: 0;
+    background: #FFFFFF;
+    box-shadow: 0 0 16px 0 rgba(0,0,0,0.18);
+}
+
+/*placeholder text on form*/
+input::-webkit-input-placeholder, 
+select::-webkit-input-placeholder{ 
+    font-weight:200;
+    font-size: 24px;
+    color: #607D8B;
+}
+
+/*placeholder text on form*/
+input, 
+select { 
+    font-weight:400;
+    font-size: 24px;
+    color: #485e69;
+    padding-left: 20px;
+    appearance: none;
+     -webkit-appearance: none;
+}
+
+.main select {
+    padding-left: 10px;
+    background: white url(img/dropDown.png) no-repeat;
+    background-position: right 10px center;
+    background-size: 25px 25px;
 }
 
 .card {
@@ -255,4 +316,19 @@ ol > li:before {
 .canvas {
     max-width: 400px;
     margin: auto;
+}
+
+footer{
+    width: 100%;
+    margin: auto;
+    background-color: #48565D;
+    padding: 50px;
+}
+
+footer .foot-txt{
+    font-weight: 300;
+    font-size: 14px;
+    color: #CED8DD;
+    text-align: center;
+    line-height: 28px;
 }
