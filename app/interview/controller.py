@@ -53,13 +53,14 @@ def init_call(interview_id):
 
 
 @blueprint.route("/<interview_id>/actions/fetch_recordings", methods=["POST"])
-@handle_exceptions
+# @handle_exceptions
 def fetch_recordings(interview_id):
 
-    Interview.fetch_recordings(interview_id=interview_id)
+    recordings = Interview.fetch_recordings(interview_id=interview_id)
 
     return jsonify(
-        status=API.STATUS.SUCCESS
+        status=API.STATUS.SUCCESS,
+        recordings=recordings
     ), API.HTTP.OK
 
 

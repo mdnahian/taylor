@@ -4,6 +4,7 @@
 
 
 from twilio.rest import TwilioRestClient
+from lib.constants import BASE_URL
 import requests
 
 account_sid = "AC564a7022d50ef41d59bb316ec4f0aabd"  # Your Account SID from www.twilio.com/console
@@ -13,9 +14,12 @@ base_url = "https://api.twilio.com"
 client = TwilioRestClient(account_sid, auth_token)
 
 
-def init_call(url, to):
+def init_call(url, to, interview_id):
     call = client.calls.create(url=url, to=to, from_="+13232714335",
-                               record=True, method="GET")
+                               record=True, method="GET",
+                               recording_status_callback=BASE_URL + "/interviews/" + interview_id + "/actions/fetch_recordings",
+                               recording_status_callback_method="POST",
+                               recording_status_events=["completed"])
     return call.sid
 
 

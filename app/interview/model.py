@@ -46,7 +46,7 @@ class Interview(Base):
     def init_call(interview_id):
         try:
             interview = Interview.get(interview_id=interview_id)
-            call_sid = InterviewTask.init_call(BASE_URL + "/questions/1.xml", "+16073388347")
+            call_sid = InterviewTask.init_call(BASE_URL + "/questions/1.xml", "+16073388347", interview_id)
             interview.call_sid = call_sid
             interview.status = INTERVIEW.STATUS.INIT
             session.commit()
@@ -60,8 +60,8 @@ class Interview(Base):
         try:
             interview = Interview.get(interview_id=interview_id)
             recordings_list = InterviewTask.fetch_recordings(interview.call_sid)
-            for recording_item in recordings_list:
-                Recording.create(recording_item)
+            # for recording_item in recordings_list:
+            #     Recording.create(recording_item)
             return Recording.list(interview.call_sid)
         except exc.IntegrityError as err:
             raise APIException("", "", err.message)
