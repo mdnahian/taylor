@@ -5,12 +5,14 @@ import os
 from lib.constants import (API)
 from lib.utils import (AlchemyEncoder)
 from interview.controller import blueprint as interview
+from recording.controller import blueprint as recording
 from twiml.controller import blueprint as twiml
 
 __all__ = ['create_app']
 
 DEFAULT_BLUEPRINTS = [
     interview,
+    recording,
     twiml
 ]
 

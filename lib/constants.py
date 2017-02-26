@@ -16,7 +16,14 @@ class API:
 
 class INTERVIEW:
     class STATUS:
+        PENDING = 0
         INIT = 1
+
+
+class RECORDING:
+    class STATUS:
+        PENDING = 0
+        COMPLETE = 1
 
 
 BASE_URL = "http://5a86b22d.ngrok.io"

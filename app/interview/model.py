@@ -10,6 +10,7 @@ from lib.exceptions import APIException
 from lib import (Base, session)
 from lib.constants import BASE_URL, INTERVIEW
 from app.tasks import interview as InterviewTask
+from app.recording.model import Recording
 
 
 class Interview(Base):
@@ -19,7 +20,7 @@ class Interview(Base):
     created_at = Column(DateTime, default=datetime.utcnow())
     updated_at = Column(DateTime, default=datetime.utcnow())
 
-    status = Column(Integer, nullable=False, default=0)
+    status = Column(Integer, nullable=False, default=INTERVIEW.STATUS.PENDING)
     call_sid = Column(String)
 
     @staticmethod
@@ -41,7 +42,7 @@ class Interview(Base):
             raise APIException("", "")
 
     @staticmethod
-    def action(interview_id, action):
+    def init_call(interview_id):
         try:
             interview = Interview.get(interview_id=interview_id)
             call_sid = InterviewTask.init_call(BASE_URL + "/twimls/1.xml", "+16073388347")
@@ -52,3 +53,19 @@ class Interview(Base):
             return interview
         except exc.IntegrityError as err:
             raise APIException("", "", err.message)
+
+    @staticmethod
+    def fetch_recordings(interview_id):
+        try:
+            interview = Interview.get(interview_id=interview_id)
+            recordings_list = InterviewTask.fetch_recordings(interview.call_sid)
+            for recording_item in recordings_list:
+                Recording.create(recording_item)
+            return Recording.list(interview.call_sid)
+        except exc.IntegrityError as err:
+            raise APIException("", "", err.message)
+
+    @staticmethod
+    def list_recordings(interview_id):
+        interview = Interview.get(interview_id=interview_id)
+        return Recording.list(interview.call_sid)
