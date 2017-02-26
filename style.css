@@ -318,7 +318,6 @@ ol > li:before {
     margin: auto;
 }
 
-<<<<<<< Updated upstream
 footer{
     width: 100%;
     margin: auto;
@@ -332,7 +331,8 @@ footer .foot-txt{
     color: #CED8DD;
     text-align: center;
     line-height: 28px;
-=======
+}
+
 .card .result.meter {
     padding: 10px 0;
     font-size: 16px;
@@ -385,5 +385,4 @@ meter::after {
 
 .card .result.meter + .subtext {
     margin-top: 25px;
->>>>>>> Stashed changes
 }
