@@ -22,7 +22,7 @@ class Recording(Base):
     status = Column(Integer, nullable=False, default=RECORDING.STATUS.PENDING)
     r_sid = Column(String, nullable=False, default="")
     call_sid = Column(String)
-    url = Column(String, nullable=False, default="")
+    url = Column(String, nullable=False, default="http://example.com")
     text = Column(String, default="")
     UniqueConstraint('r_sid', 'call_sid', name='r_sid_call_sid')
 

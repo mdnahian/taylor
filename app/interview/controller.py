@@ -1,6 +1,6 @@
 from flask import (Blueprint, jsonify, render_template, request, redirect, url_for)
 from .model import Interview
-from lib.constants import (API)
+from lib.constants import (API, BASE_URL)
 from lib.utils import handle_exceptions
 import time
 
@@ -47,6 +47,15 @@ def init_call(interview_id):
         interview=interview
     ), API.HTTP.OK
     # return redirect(url_for('interview.stats', interview_id=interview.interview_id))
+
+
+@blueprint.route("/alexa", methods=["POST"])
+# @handle_exceptions
+def alexa():
+    interview = Interview.alexa(request.get_json())
+    return jsonify(
+        url=BASE_URL + "/interviews/" + str(interview.interview_id) + "/stats"
+    ), API.HTTP.OK
 
 
 @blueprint.route("/<interview_id>/actions/fetch_recordings", methods=["POST"])

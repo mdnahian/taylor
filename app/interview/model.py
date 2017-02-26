@@ -118,3 +118,14 @@ class Interview(Base):
         recordings = Recording.list(interview.call_sid)
         analysis = Interview.analyze(interview_id)
         return zip(questions, recordings, analysis['sections'])
+
+    @staticmethod
+    def alexa(i_recording):
+        interview = Interview.create({})
+        Interview.send_url_sms(interview.interview_id)
+        import random
+        for recording_item in i_recording:
+            recording_item['r_sid'] = str(random.randint(1, 10000000000000))
+            recording_item['call_sid'] = str(random.randint(1, 10000000000000))
+            Recording.create(recording_item)
+        return interview

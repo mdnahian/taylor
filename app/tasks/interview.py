@@ -18,7 +18,7 @@ def send_url_sms(interview_id):
     client.messages.create(
         to="+16073388347",
         from_="+13232714335",
-        body="Your interview analysis is available at " + BASE_URL + "/interviews/" + interview_id + "/stats",
+        body="Your interview analysis is available at " + BASE_URL + "/interviews/" + str(interview_id) + "/stats",
     )
 
 
