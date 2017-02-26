@@ -50,9 +50,9 @@
         
     </head>
     <body>
-        <nav class="other-nav">
-            <div><img src="img/taylr-logo-white.png" width=100px;></div>
-            <div>Taylr</div>
+        <nav>
+            <a href="dashboard.html"><img src="img/backArrow.png" width="20px" style="float: left;"></a>
+            <div>Transcript</div>
         </nav>
         <div class="main">
             <div class="text">
@@ -167,9 +167,9 @@
                         </div>
                         <br>
                         <div class="result">
-                            <canvas id="fillerWords"></canvas>
+                            <canvas id="fillerWords1" height="75px"></canvas>
                             <script>
-                                var ctx = $("#fillerWords");
+                                var ctx = $("#fillerWords1");
 
                                 var fillerBarChart = new Chart(ctx, {
                                     type: 'horizontalBar',
@@ -188,23 +188,25 @@
                                             ]
                                     },
                                     options: {
-                                        gridLines: {
-                                            display: false
-                                        },
-                                        scales: {
-                                            xAxes: [{
-                                                stacked: true
-                                            }],
-                                            yAxes: [{
-                                                stacked: true
-                                            }],
-                                            display: false
-                                        },
-                                        legend: {
-                                            display: false,
-                                            position: 'bottom'
-                                        }
+                                    scales: {
+                                        xAxes: [{
+                                            stacked: true,
+                                            gridLines: {
+                                                display: false
+                                            },
+                                            ticks: {
+                                                display: false
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            stacked: true
+                                        }],
+                                    },
+                                    legend: {
+                                        display: false,
+                                        position: 'bottom'
                                     }
+                                }
                                 });
 
 
@@ -321,9 +323,9 @@
                         </div>
                         <br>
                         <div class="result">
-                            <canvas id="fillerWords"></canvas>
+                            <canvas id="fillerWords2" height="75px"></canvas>
                             <script>
-                                var ctx = $("#fillerWords");
+                                var ctx = $("#fillerWords2");
 
                                 var fillerBarChart = new Chart(ctx, {
                                     type: 'horizontalBar',
@@ -342,23 +344,25 @@
                                             ]
                                     },
                                     options: {
-                                        gridLines: {
-                                            display: false
-                                        },
-                                        scales: {
-                                            xAxes: [{
-                                                stacked: true
-                                            }],
-                                            yAxes: [{
-                                                stacked: true
-                                            }],
-                                            display: false
-                                        },
-                                        legend: {
-                                            display: false,
-                                            position: 'bottom'
-                                        }
+                                    scales: {
+                                        xAxes: [{
+                                            stacked: true,
+                                            gridLines: {
+                                                display: false
+                                            },
+                                            ticks: {
+                                                display: false
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            stacked: true
+                                        }],
+                                    },
+                                    legend: {
+                                        display: false,
+                                        position: 'bottom'
                                     }
+                                }
                                 });
 
 
@@ -368,9 +372,13 @@
                 </div>
             </a>
         </div>
+        <div class="main single footer">
+            <div class="simple">Ready to test your skills again? Schedule another interview with Taylr:</div><br>
+            <div class="full button footer"><a href="index.html"><button><div>I'm Ready</div></button></a></div>
+        </div>
         <footer>
             <div class="foot-txt">&copy; 2017</div>
             <div class="foot-txt">Made at HackBU by Md Islam, Akash Kodhawale, Rohit Kapur and Emma Siegel</div>
-        </footer
+        </footer>
     </body>
 </html>

@@ -24,6 +24,9 @@ nav {
     background-color: #ff6349;
     text-align: center;
     color: white;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase
 }
 
 nav .hero {
@@ -49,6 +52,7 @@ nav .hero .hero-head{
     font-weight: 900;
     font-size: 48px;
     color: #FFFFFF;
+    text-transform: none !important;
 }
 
 nav .hero .hero-subHead{
@@ -56,6 +60,7 @@ nav .hero .hero-subHead{
     font-size: 22px;
     color: #FFFFFF;
     padding: 25px 0;
+    text-transform: none !important;
 }
 
 nav .hero .hero-body{
@@ -258,7 +263,7 @@ hr {
 }
 
 .highlight {
-    background-color: #FFFF00;
+    background-color: #7CFFCD;
 }
 
 .section-header {
@@ -330,11 +335,21 @@ ol > li:before {
     margin: auto;
 }
 
-footer{
+footer {
     width: 100%;
-    margin: auto;
     background-color: #48565D;
     padding: 50px;
+}
+
+.single.footer {
+    position: relative;
+    top: 32px;
+    z-index: 100;
+    width: 100%;
+}
+
+.single.footer {
+    text-align: center;  
 }
 
 footer .foot-txt{
@@ -395,8 +410,20 @@ meter::after {
   right: 0;
 }
 
+.sent-meter meter::before {
+  content: 'Negative';
+}
+
+.sent-meter meter::after {
+  content: 'Positive';
+}
+
 .card .result.meter + .subtext {
     margin-top: 25px;
+}
+
+nav .hero .logo img {
+    max-width: 450px;
 }
 
 @media screen and (max-width: 850px) {

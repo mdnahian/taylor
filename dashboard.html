@@ -50,7 +50,7 @@
     </head>
     <body>
         <nav>
-            <div>Taylr</div>
+            <div>Taylr Results</div>
         </nav>
         <div class="main">
             <div class="text half section">
@@ -88,12 +88,10 @@
             <div class="card">
                 <div class="container">
                     <div class="header">Sentiment Analysis</div>
-                    <div class="result meter">
+                    <div class="result sent-meter meter">
                         <meter max=100 min=0 value=50></meter>
-                    </div>
-                    <div class="subtext">
-                        Showing joy, fear, anger, disgust or sadness can give an interviewer a lot of different impressions. Try to show a good attitude and put a positive spin on difficult situations!
-                    </div>
+                    </div>  
+                    <div class="subtext">A positive or negative sentiment can say a lot about your attitude towards an interview and a potential employer. Based on the context of your interview, be sure to pay attention to how you present yourself.</div>                      
                 </div>                    
             </div>
             <div class="card">
@@ -160,7 +158,7 @@
                     <div class="result"><span id="filler">42</span></div>
                     <script>animateNumber(42, 'filler');</script>
                     <div class="subtext">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum illum numquam qui sequi nulla deserunt eius saepe laboriosam aliquid atque.
+                        In an effort to work toward a goal of using fewer filler words, consider taking meaningful pauses.
                     </div>
                     <div class="result">
                         <canvas id="fillerWords"></canvas>
@@ -187,17 +185,19 @@
                                         ]
                                 },
                                 options: {
-                                    gridLines: {
-                                        display: false
-                                    },
                                     scales: {
                                         xAxes: [{
-                                            stacked: true
+                                            stacked: true,
+                                            gridLines: {
+                                                display: false
+                                            },
+                                            ticks: {
+                                                display: false
+                                            }
                                         }],
                                         yAxes: [{
                                             stacked: true
                                         }],
-                                        display: false
                                     },
                                     legend: {
                                         display: false,
@@ -210,7 +210,7 @@
                         </script>
                     </div>
                     <div class="subtext">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, ab?
+                        Interviewers are interested in seeing your thought process so don’t be afraid to relax and speak whats on your mind.
                     </div>
                 </div>                    
             </div>
@@ -251,11 +251,17 @@
                     <div class="result meter">
                         <meter max=100 min=0 value=50></meter>
                     </div>
-                    <div class="subtext">
-                        Showing joy, fear, anger, disgust or sadness can give an interviewer a lot of different impressions. Try to show a good attitude and put a positive spin on difficult situations!
-                    </div>
+                    <div class="subtext">The way you put your words together can have a big impact on the impression you give to an interviewer. See the detailed transcript to find out specific instances to improve your grammar composition.</div>
                 </div>                    
             </div>
         </div>
+        <div class="main single footer">
+            <div class="simple">Ready to test your skills again? Schedule another interview with Taylr:</div><br>
+            <div class="full button footer"><a href="index.html"><button><div>I'm Ready</div></button></a></div>
+        </div>
+        <footer>
+            <div class="foot-txt">&copy; 2017</div>
+            <div class="foot-txt">Made at HackBU by Md Islam, Akash Kodhawale, Rohit Kapur and Emma Siegel</div>
+        </footer>
     </body>
 </html>
