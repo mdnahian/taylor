@@ -412,3 +412,10 @@ meter::after {
         width: 100%;
     }
 }
+
+@media screen and (max-width: 650px) {
+    .dash { /* Masonry container */
+        column-count: 1;
+        column-gap: 20px;
+    }
+}
