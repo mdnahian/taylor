@@ -8,10 +8,12 @@
             <div>Taylr</div>
         </nav>
         <div class="main">
-            <form id='info'>
-                <input type="text" class="full" name="name" id="name" placeholder="Name"/>
+            <form id='info' action="/interviews" method="POST">
+                <input type="text" class="full" name="name" id="name"
+                placeholder="Name" value="John Doe"/>
                 <input type="text" class="half" name="email" id="email" placeholder="Email"/>
-                <input type="text" class="half" name="phone" id="phone" placeholder="Phone"/>
+                <input type="text" class="half" name="phone" id="phone"
+                placeholder="Phone" value="+1607338XXXX"/>
                 <div class="quarter filler"></div>
                 <select name="career" id="career" class="half">
                     <option value="item1">Career</option>

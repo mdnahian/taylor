@@ -93,4 +93,12 @@ def analyze(interview_id):
 def stats(interview_id):
 
     interview = Interview.get(interview_id=interview_id)
-    return render_template('.html', interview=interview)
+    return render_template('stats.html', interview=interview)
+
+
+@blueprint.route("/<interview_id>/transcripts", methods=["GET"])
+# @handle_exceptions
+def transcripts(interview_id):
+
+    results = Interview.get_transcripts(interview_id=interview_id)
+    return render_template('transcript.html', results=results)

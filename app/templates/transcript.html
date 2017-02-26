@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" href="/static/style.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+        <script>
+            $( document ).ready(function() {
+                $('.card-expand').click(function() {
+                    $(this).find(".hide").toggleClass('show');
+                    $(this).find("hr").toggleClass('show');
+                })
+            }); 
+        </script>
+
+    </head>
+    <body>
+        <nav>
+            <div>Taylr</div>
+        </nav>
+        <div class="main">
+            <div class="text">
+                <div class="section-header">Transcript Results</div>
+                <div class="simple">Click on a card to view specifically tailored analytics.</div>
+            </div>
+        </div>
+        {% for result in results %}
+        <div class="main dash single">
+
+            <a onclick="" >
+                <div class="card card-expand">
+                    <div class="container">
+                        <div class="transcript-result">
+                            <table>
+                                <tr class="taylr">
+                                    <td>T:</td>
+                                    <td>{{ result[0].question }}</td>
+                                </tr>
+                                <tr class="interviewee">
+                                    <td>E:</td>
+                                    <td>{{ result[1].text }}</td>
+                                </tr>
+                            </table>    
+                        </div>
+                    </div>  
+                    <hr>      
+                    <div class="container hide">
+                        <div class="header">Tone</div>
+                        <div class="result">Excited</div>
+                        <div class="subtext">We found that you were enthusiastic throughout the interview. Keep up the good work!</div>
+                    </div> 
+                    <hr>
+                    <div class="container hide">
+                        <div class="header">Gramatical Errors</div>
+                        <div class="result">{{ result[2]['grammatical_errors'] | length }}</div>
+                        <div class="subtext">In this response, you made {{ result[2]['grammatical_errors'] | length }} grammatical errors. Here are some suggestions for improving your grammar in this context:
+
+                            <ol>
+                                <li>I'd be happy to <span class="highlight">answer your question!</span></li>
+                                <li>You know, it was a good job and I learned <span class="highlight">a lot.</span></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <hr> 
+                    <div class="container hide">
+                        <div class="header">Response Time</div>
+                        <div class="result">00:00:17</div>
+                        <div class="subtext">Your response time for this question was 8 seconds. This is 11 seconds less than your average.</div>
+                    </div>
+                    <hr>    
+                    <div class="container hide">
+                        <div class="header">Emotion</div>
+                        <div class="result">
+                            <canvas id="emotion{{ loop.index }}" class="canvas"></canvas>
+                            <script>
+                                var ctx1 = $("#emotion{{ loop.index }}"),
+    graph_data = [
+        100 * {{ result[2]['emotions']['joy'] }}, 
+        100 * {{ result[2]['emotions']['disgust'] }}, 
+        100 * {{ result[2]['emotions']['fear'] }}, 
+        100 * {{ result[2]['emotions']['anger'] }}, 
+        100 * {{ result[2]['emotions']['sadness'] }}
+    ];
+
+var emotionRadarChart{{ loop.index }} = new Chart(ctx1, {
+    type: 'radar',
+    data: {
+        labels: [
+            "Joy", 
+            "Disgust", 
+            "Fear", 
+            "Anger", 
+            "Sadness"
+        ],
+        datasets: [
+            {
+                data: graph_data,
+                label: "",
+                backgroundColor: "",
+                borderColor: "#FF6349",
+                borderWidth: 4,
+                borderJoinStyle: "round",
+                pointBackgroundColor: "rgb(255, 104, 104)",
+                pointBorderColor: "#fff",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "rgba(179,181,198,1)"
+            }
+        ]
+    },
+    options: {
+        scale: {
+            reverse: false,
+            ticks: {
+                stepSize: (Math.ceil(Math.max.apply( Math, graph_data) / 25) * 25)/3,
+                beginAtZero: true,
+                min: 0,
+                max: Math.ceil(Math.max.apply( Math, graph_data) / 25) * 25,
+                display: false
+            }
+        },
+        legend: {
+            display: false,
+            position: 'bottom'
+        }
+    }
+})
+                            </script>
+                        </div>
+                        <div class="subtext">
+                            Showing joy, fear, anger, disgust or sadness can give an interviewer a lot of different impressions. Try to show a good attitude and put a positive spin on difficult situations!
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="container hide">
+                        <div class="header">Filler Words</div>
+                        <div class="result">2</div>
+                        <div class="subtext">
+                            In this response, you used 2 filler words.
+                        </div>
+                        <br>
+                        <div class="result">
+                            <canvas id="fillerWords{{ loop.index }}"></canvas>
+                            <script>
+                                var ctx2 = $("#fillerWords{{ loop.index }}");
+
+var fillerBarChart = new Chart(ctx2, {
+    type: 'horizontalBar',
+    data: {
+        labels: ["Like", "Um"],
+        datasets: [
+            {
+                label: "Filler words",
+                backgroundColor: [
+                    '#48565D',
+                    '#1A272E'
+                ],
+                borderWidth: 0,
+                data: [1, 1]
+            }
+        ]
+    },
+    options: {
+        gridLines: {
+            display: false
+        },
+        scales: {
+            xAxes: [{
+                stacked: true
+            }],
+            yAxes: [{
+                stacked: true
+            }],
+            display: false
+        },
+        legend: {
+            display: false,
+            position: 'bottom'
+        }
+    }
+});
+
+
+                            </script>
+                        </div>
+                    </div>                   
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </body>
+</html>

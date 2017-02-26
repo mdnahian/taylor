@@ -85,4 +85,13 @@ class Interview(Base):
             entry['question'] = question.question
             entry['response'] = recording.text
             raw['sections'].append(entry)
+            i += 1
         return InterviewTask.execute(raw)
+
+    @staticmethod
+    def get_transcripts(interview_id):
+        interview = Interview.get(interview_id=interview_id)
+        questions = Question.list(interview_id=interview_id)
+        recordings = Recording.list(interview.call_sid)
+        analysis = Interview.analyze(interview_id)
+        return zip(questions, recordings, analysis['sections'])
