@@ -2,3 +2,5 @@ Flask==0.12
 SQLAlchemy==1.1.5
 twilio==5.7.0
 watson-developer-cloud==0.25.0
+3to2==1.1.1
+language-check==0.8
