@@ -63,24 +63,25 @@ class Interview(Base):
             recordings_list = InterviewTask.fetch_recordings(interview.call_sid)
             Interview.send_url_sms(interview_id)
             for recording_item in recordings_list:
+                recording_item['interview_id'] = interview_id
                 Recording.create(recording_item)
-            return Recording.list(interview.call_sid)
+            return Recording.list(interview_id)
         except exc.IntegrityError as err:
             raise APIException("", "", err.message)
 
     @staticmethod
     def list_recordings(interview_id):
         interview = Interview.get(interview_id=interview_id)
-        return Recording.list(interview.call_sid)
+        return Recording.list(interview_id)
 
     @staticmethod
     def analyze(interview_id):
         interview = Interview.get(interview_id=interview_id)
         questions = Question.list(interview_id=interview_id)
-        recordings = Recording.list(interview.call_sid)
+        recordings = Recording.list(interview_id=interview_id)
         raw = {'sections': []}
         i = 0
-        for question in questions:
+        for recording in recordings:
             entry = {}
             question = questions[i]
             recording = recordings[i]
@@ -94,7 +95,7 @@ class Interview(Base):
     def get_stats(interview_id):
         interview = Interview.get(interview_id=interview_id)
         questions = Question.list(interview_id=interview_id)
-        recordings = Recording.list(interview.call_sid)
+        recordings = Recording.list(interview_id=interview_id)
         raw = {'sections': []}
         i = 0
         for question in questions:
@@ -113,9 +114,9 @@ class Interview(Base):
 
     @staticmethod
     def get_transcripts(interview_id):
-        interview = Interview.get(interview_id=interview_id)
+        Interview.get(interview_id=interview_id)
         questions = Question.list(interview_id=interview_id)
-        recordings = Recording.list(interview.call_sid)
+        recordings = Recording.list(interview_id=interview_id)
         analysis = Interview.analyze(interview_id)
         return zip(questions, recordings, analysis['sections'])
 
@@ -123,9 +124,7 @@ class Interview(Base):
     def alexa(i_recording):
         interview = Interview.create({})
         Interview.send_url_sms(interview.interview_id)
-        import random
         for recording_item in i_recording:
-            recording_item['r_sid'] = str(random.randint(1, 10000000000000))
-            recording_item['call_sid'] = str(random.randint(1, 10000000000000))
+            recording_item['interview_id'] = interview.interview_id
             Recording.create(recording_item)
         return interview

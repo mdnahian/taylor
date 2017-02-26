@@ -20,11 +20,9 @@ class Recording(Base):
     updated_at = Column(DateTime, default=datetime.utcnow())
 
     status = Column(Integer, nullable=False, default=RECORDING.STATUS.PENDING)
-    r_sid = Column(String, nullable=False, default="")
-    call_sid = Column(String)
+    interview_id = Column(String, nullable=False)
     url = Column(String, nullable=False, default="http://example.com")
     text = Column(String, default="")
-    UniqueConstraint('r_sid', 'call_sid', name='r_sid_call_sid')
 
     @staticmethod
     def create(i_recording):
@@ -57,11 +55,5 @@ class Recording(Base):
             raise APIException("", "", err.message)
 
     @staticmethod
-    def list(call_sid):
-        try:
-            records = []
-            for record in session.query(Recording).filter(call_sid==call_sid):
-                records.append(record)
-            return records
-        except Exception:
-            raise APIException("", "", err.message)
+    def list(interview_id):
+        return session.query(Recording).filter_by(interview_id=interview_id)

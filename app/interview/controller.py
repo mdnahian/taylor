@@ -50,12 +50,11 @@ def init_call(interview_id):
 
 
 @blueprint.route("/alexa", methods=["POST"])
-# @handle_exceptions
+@handle_exceptions
 def alexa():
+    print(request.get_json())
     interview = Interview.alexa(request.get_json())
-    return jsonify(
-        url=BASE_URL + "/interviews/" + str(interview.interview_id) + "/stats"
-    ), API.HTTP.OK
+    return BASE_URL + "/interviews/" + str(interview.interview_id) + "/stats"
 
 
 @blueprint.route("/<interview_id>/actions/fetch_recordings", methods=["POST"])
@@ -108,4 +107,4 @@ def stats(interview_id):
 def transcripts(interview_id):
 
     results = Interview.get_transcripts(interview_id=interview_id)
-    return render_template('transcript.html', results=results)
+    return render_template('transcript.html', results=results, interview_id=interview_id)
