@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Response>
+    <Say>{{ question.question }}</Say>
+    {% if not last %}
+    <Record action='/questions/{{ question.question_id + 1 }}.xml' finishOnKey='#' transcribe='true' trim='trim-silence'/>
+    {% else %}
+    <Record action='/questions/last.xml' finishOnKey='#' transcribe='true' trim='trim-silence'/>
+    {% endif %}
+</Response>

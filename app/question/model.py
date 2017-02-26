@@ -42,4 +42,4 @@ class Question(Base):
 
     @staticmethod
     def list(interview_id):
-        return session.query(Recording).filter(interview_id=interview_id)
+        return session.query(Question).filter(interview_id==interview_id)

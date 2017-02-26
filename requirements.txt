@@ -1,3 +1,4 @@
 Flask==0.12
 SQLAlchemy==1.1.5
 twilio==5.7.0
+watson-developer-cloud==0.25.0
