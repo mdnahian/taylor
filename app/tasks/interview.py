@@ -30,6 +30,7 @@ def fetch_recordings(call_sid):
         recording = {}
         recording['url'] = base_url + record['uri'][:-5]
         recording['r_sid'] = record['sid']
+        recording['call_sid'] = record['sid']
         rec = client.recordings.get(record['sid'])
         for t in rec.transcriptions.list():
             recording['text'] = t.transcription_text
