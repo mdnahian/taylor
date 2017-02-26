@@ -2,6 +2,7 @@ from flask import (Blueprint, jsonify, render_template, request, redirect, url_f
 from .model import Interview
 from lib.constants import (API)
 from lib.utils import handle_exceptions
+import time
 
 blueprint = Blueprint("interview", __name__, url_prefix="/interviews")
 
@@ -41,13 +42,18 @@ def get(interview_id):
 def init_call(interview_id):
 
     interview = Interview.init_call(interview_id=interview_id)
-    return redirect(url_for('interview.stats', interview_id=interview.interview_id))
+    return jsonify(
+        status=API.STATUS.SUCCESS,
+        interview=interview
+    ), API.HTTP.OK
+    # return redirect(url_for('interview.stats', interview_id=interview.interview_id))
 
 
 @blueprint.route("/<interview_id>/actions/fetch_recordings", methods=["POST"])
 @handle_exceptions
 def fetch_recordings(interview_id):
 
+    time.sleep(10)
     recordings = Interview.fetch_recordings(interview_id=interview_id)
 
     return jsonify(
