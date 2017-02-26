@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #45665D;
+    font-family: 'Lato', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+nav {
+    width: 100%;
+    height: 88px;
+    background-color: #ff6349;
+    text-align: center;
+    font-family: sans-serif;
+    color: white;
+}
+
+nav div {
+    position: relative;
+    top: 50%;
+    transform: perspective(1px) translateY(-50%);
+}
+
+.main {
+    width: calc(100% - 40px);
+    max-width: 750px;
+    margin: auto;
+}
+
+.main {
+    padding-bottom: 10px;
+}
+
+.main:first-of-type {
+    padding-top: 20px;
+}
+
+.dash { /* Masonry container */
+    column-count: 2;
+    column-gap: 20px;
+}
+
+.main input, .main select {   
+    height: 45px;
+    margin: 10px 0;
+}
+
+.card {
+    margin: 10px 0;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: white;
+    display: inline-block;
+    width: 100%;
+}
+
+.card .header {
+    font-size: 18px;
+    font-weight: 900;
+    color: #ff6349;
+    text-transform: uppercase;
+}
+
+.card .result {
+    font-size: 72px;
+    font-weight: 300;
+    margin-left: -4px;
+}
+
+a .card {
+    text-decoration: none;
+}
+
+.card .transcript-result .taylr td:first-of-type {
+    color: #ff6349;
+}
+
+.card .transcript-result .taylr td {
+    font-weight: 600;
+}
+
+.card .transcript-result tr td:first-of-type {
+    width: 30px;
+    font-weight: 600;
+}
+
+.card .transcript-result .interviewee {
+    color: #607D8B;
+}
+
+.card .transcript-result .interviewee td:last-of-type {
+    font-weight: 400;
+}
+
+.card .transcript-result .taylr td:last-of-type {
+    color: #48565D;
+}
+
+.card .transcript-result table tr td {
+    font-size: 16px;
+    vertical-align: top;
+    padding-top: 15px;
+}
+
+.expand {
+    color: #ff6349;
+    font-weight: 900;
+    font-size: 26px;
+    text-align: center;
+    display: table;
+    margin-top: -100px;
+    height: 50px;
+    width: 100%;
+}
+
+.expand div {
+    padding-top: 100px;
+    display: table-cell;
+    vertical-align: bottom;
+    position: relative;
+    z-index: 100;
+    background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, rgba(255,255,255,0) 100%);
+    background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, rgba(255,255,255,0) 100%);
+    background-image: -o-linear-gradient(bottom, #FFFFFF 0%, rgba(255,255,255,0) 100%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FFFFFF), color-stop(100, rgba(255,255,255,0)));
+    background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, rgba(255,255,255,0) 100%);
+    background-image: linear-gradient(to top, #FFFFFF 0%, rgba(255,255,255,0) 100%);
+}
+
+.simple {
+    font-size: 18px;
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.full {
+    width: 100%;
+    margin-left: 25%;
+}
+
+.half {
+    width: 50%;
+    margin-left: 25%;
+}
+
+<<<<<<< HEAD
+.gauge {
+  display:inline-block;
+  position:relative;
+  width:10rem;
+  height:5rem;
+  overflow:hidden;
+  margin:2rem;
+}
+
+.gauge:before, .gauge:after, .meter {
+  position:absolute;
+  display:block;
+  content:"";
+}
+
+.gauge:before, .meter { width:10rem; height:5rem; }
+.gauge:before { border-radius:5rem 5rem 0 0; background:#2a2a2a; }
+
+.gauge:after {
+  position:absolute;
+  bottom:0;
+  left:2.5rem;
+  width:5rem;
+  height:2.5rem;
+  background:#222;
+  border-radius:2.5rem 2.5rem 0 0;
+}
+
+.meter {
+  top:100%;
+  transition:1.5s;
+  transform-origin:center top;
+  border-radius:0 0 6rem 6rem;
+  background:deepskyblue;
+}
+
+.gauge:hover .meter { transform:rotate(.5turn); }
+
+button {
+    background-color: #ff6349;
+    border-radius: 99px;
+    border: 0px;
+    padding: 10px 20px;
+    margin: 20px 0 0 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    text-transform: uppercase;
+}
+
+button:hover {
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.14);
+}
