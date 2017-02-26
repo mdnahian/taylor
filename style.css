@@ -64,6 +64,18 @@ nav .hero .hero-body{
     color: #FFFFFF;
 }
 
+.other-nav div {
+    display: inline-block;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.other-nav div:nth-child(2) {
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+}
+
 .main {
     width: calc(100% - 40px);
     max-width: 750px;
@@ -78,7 +90,7 @@ nav .hero .hero-body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 100px 0;
+    margin: 40px 0;
 }
 
 .main:first-of-type {
@@ -385,4 +397,18 @@ meter::after {
 
 .card .result.meter + .subtext {
     margin-top: 25px;
+}
+
+@media screen and (max-width: 850px) {
+    .full, .half {
+        flex-basis: 100%;
+    }
+    
+    nav .hero .logo img {
+        max-width: 400px;
+    }
+    
+    nav .hero {
+        width: 100%;
+    }
 }
