@@ -8,8 +8,45 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="scripts/jquery.animateNumber.min.js" type="text/javascript"></script>
 
-    
+        <script>
+            $( document ).ready(function() {
+                $('.card-expand').click(function() {
+                    $(this).find(".hide").toggleClass('show');
+                    $(this).find("hr").toggleClass('show');
+                })
+            });
+            
+          function animateNumberPadding(max_number, identity) {
+                var padding_zeros = '';
+              for(var i = 0, l = max_number.toString().length; i < l; i++) {
+                padding_zeros += '0';
+              }
+
+              var padded_now, numberStep = function(now, tween) {
+                var target = $(tween.elem),
+                    rounded_now = Math.round(now);
+
+                var rounded_now_string = rounded_now.toString()
+                padded_now = padding_zeros + rounded_now_string;
+                padded_now = padded_now.substring(rounded_now_string.length);
+
+                target.prop('number', rounded_now).text(padded_now);
+              };
+
+                $('#' + identity).animateNumber({
+                  number: max_number,
+                  numberStep: numberStep
+                }, 500);
+          };
+            
+            function animateNumber(max_number, identity) {
+                $('#' + identity).animateNumber({ number: max_number });
+            }
+        </script>
+        
+        
     </head>
     <body>
         <nav>
@@ -43,7 +80,8 @@
             <div class="card">
                 <div class="container">
                     <div class="header">Average Response Time</div>
-                    <div class="result">00:00:17</div>
+                    <div class="result">00:00:<span id="number">00</span></div>
+                    <script>animateNumberPadding(17, 'number');</script>
                     <div class="subtext">Keeping short response times tells the interviewer that you are prepared and interested.</div>
                 </div>                    
             </div>
@@ -119,7 +157,8 @@
             <div class="card">
                 <div class="container">
                     <div class="header">Filler Words</div>
-                    <div class="result">42</div>
+                    <div class="result"><span id="filler">42</span></div>
+                    <script>animateNumber(42, 'filler');</script>
                     <div class="subtext">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum illum numquam qui sequi nulla deserunt eius saepe laboriosam aliquid atque.
                     </div>
